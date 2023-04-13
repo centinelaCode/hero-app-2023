@@ -2,8 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 
 import { NavBar } from '../ui'
-import { MarvelPage } from '../heroes/pages/MarvelPage'
-import { DcPage } from '../heroes/pages/DcPages'
+import { MarvelPage, DcPage } from '../heroes'
 import { LoginPage } from '../auth/pages/LoginPage'
 
 
