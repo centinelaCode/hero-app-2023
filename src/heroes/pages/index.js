@@ -1,4 +1,6 @@
 
 // agregamos todos las pages
 export * from './MarvelPage'
-export * from './DcPages'
+export * from './DcPage'
+export * from './SearchPage'
+export * from './HeroPage'
