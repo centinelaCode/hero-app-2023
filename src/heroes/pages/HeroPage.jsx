@@ -1,11 +1,14 @@
+import { useMemo } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { getHeroeById } from "../helpers/getHeroeById";
 
 export const HeroPage = () => {
 
   const { id } = useParams();
-  const heroe = getHeroeById(id);
-  // console.log(heroe);
+   
+  // obtenemos el heroe por id  | memorizamos el heroe y cuando el id cambie se volvera a disparar
+  const heroe = useMemo(() => getHeroeById(id), [id]); 
+  
 
   const navigate = useNavigate();
   const onNavigateBack = () => {

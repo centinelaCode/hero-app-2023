@@ -1,9 +1,11 @@
+import { useMemo } from "react";
 import { HeroCard } from "./HeroCard";
 import { getHeroesByPublisher } from "../helpers"
 
 export const HeroList = ({ publisher }) => {
 
-   const heroes = getHeroesByPublisher( publisher );
+    // obtenemos heroes por publisher  | memorizamos heroes, cuando el id cambie se volvera a disparar
+   const heroes =  useMemo(() => getHeroesByPublisher( publisher ), [publisher]); 
    // console.log(heroes)
 
    return (
