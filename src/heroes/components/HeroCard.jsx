@@ -22,7 +22,7 @@ export const HeroCard = ({
 
 
    return (
-      <div className="col">
+      <div className="col animate__animated animate__fadeIn">
          <div className="card">
 
             <div className="row no-gutters">
@@ -45,6 +45,8 @@ export const HeroCard = ({
                      />
 
                      <p className="card-text">
+                        {/* <small><span className="badge rounded-pill bg-primary">{first_appearance}</span></small> */}
+                        
                         <small className="text-muted">{ first_appearance }</small>
                      </p>
                      
