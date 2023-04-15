@@ -15,12 +15,16 @@ export const SearchPage = () => {
 	const location = useLocation();
 	// console.log({location})
 	const { q = '' } = queryString.parse(location.search);
-	
+
 
 	//! obtenemos los heroes en base al quere param
 	const heroes = getHeroesByName(q);
 	// console.log(heroes)
 
+	//! validaciones para show searc (cuando no se a buscado nada) y show error cuando se busca algo qu eno encuentra
+	const showSearch = (q.length === 0)
+	const showError = (q.length > 0) && (heroes.length === 0);
+	
 	//! usamos nuestro custom hook useForm
 	const { searchText, onInputChange } = useForm({
 		searchText: q
@@ -64,12 +68,24 @@ export const SearchPage = () => {
 			<h4>Results</h4>
 			<hr />
 
-			{
+			{/* {
+				// forma 1 => dificil de leer
 				( q === '' )
 				? (<div className="alert alert-primary">Search A Hero</div>)
 				: ( heroes.length === 0 ) && (<div className="alert alert-danger">No found hero with <b>{ q }</b></div>)					
-			}
+			} */}
 			
+			<div 
+				className="alert alert-primary animate__animated animate__fadeIn"
+				 style={{ display: showSearch ? '' : 'none' }}
+				>Search A Hero
+			</div>
+
+			<div 
+				className="alert alert-danger animate__animated animate__fadeIn" 
+				style={{ display: showError ? '' : 'none' }}
+			>No found hero with <b>{ q }</b>
+			</div>
 
 			
 
