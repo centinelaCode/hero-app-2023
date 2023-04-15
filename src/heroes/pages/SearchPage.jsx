@@ -1,9 +1,23 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
+
 import { HeroCard } from '../components'
 import { useForm } from '../../hooks/useForm';
 
 export const SearchPage = () => {
 
-	// usamos nuestro custom hook useForm
+	//! navigate para navegar e inyectra el el query param: q=batman
+	const navigate = useNavigate();
+
+	//! locaction para obtener los query string con apoyo de queryString(libreria) para obtener
+	//! all los query string en forma de un array
+	const location = useLocation();
+	// console.log({location})
+
+	const { q = '' } = queryString.parse(location.search);
+	
+
+	//! usamos nuestro custom hook useForm
 	const { searchText, onInputChange } = useForm({
 		searchText: ''
 	});
@@ -12,8 +26,9 @@ export const SearchPage = () => {
 		event.preventDefault();
 		
 		if( searchText.trim().length <= 1 ) return;
-		
-		console.log({searchText})
+		console.log({searchText})		
+
+		navigate(`?q=${ searchText }`)
 	}
 
   return (
@@ -51,7 +66,7 @@ export const SearchPage = () => {
 
 			<div 
 				className="alert alert-danger"
-			>No found hero with <b>ABC</b></div>
+			>No found hero with <b>{ q }</b></div>
 
 			{/* <HeroCard heroe={...heroe} ></HeroCard> */}
 
