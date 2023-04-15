@@ -3,6 +3,7 @@ import queryString from 'query-string';
 
 import { HeroCard } from '../components'
 import { useForm } from '../../hooks/useForm';
+import { getHeroesByName } from '../helpers'
 
 export const SearchPage = () => {
 
@@ -13,20 +14,23 @@ export const SearchPage = () => {
 	//! all los query string en forma de un array
 	const location = useLocation();
 	// console.log({location})
-
 	const { q = '' } = queryString.parse(location.search);
 	
 
+	//! obtenemos los heroes en base al quere param
+	const heroes = getHeroesByName(q);
+	// console.log(heroes)
+
 	//! usamos nuestro custom hook useForm
 	const { searchText, onInputChange } = useForm({
-		searchText: ''
+		searchText: q
 	});
 
 	const onSearchSubmit = (event) => {
 		event.preventDefault();
 		
 		if( searchText.trim().length <= 1 ) return;
-		console.log({searchText})		
+		// console.log({searchText})		
 
 		navigate(`?q=${ searchText }`)
 	}
@@ -68,7 +72,11 @@ export const SearchPage = () => {
 				className="alert alert-danger"
 			>No found hero with <b>{ q }</b></div>
 
-			{/* <HeroCard heroe={...heroe} ></HeroCard> */}
+			{
+				heroes.map(heroe => (
+					<HeroCard key={heroe.id} {...heroe} />
+				))
+			}
 
 		</div>
 	</div>

@@ -1,4 +1,6 @@
 
 
-// agregamos todos las pages
-export * from './getHeroesByPublisher'
+// agregamos todos los archivos
+export * from './getHeroeById';
+export * from './getHeroesByName';
+export * from './getHeroesByPublisher';
