@@ -9,7 +9,7 @@ export const LoginPage = () => {
   const navigate = useNavigate();
 
   const onLogin = () => {
-    console.log(user)
+    // console.log(user)
 
     // hacemos el dispach de la cacion login y le pasamoes el name
     login('Raul Valdez');
