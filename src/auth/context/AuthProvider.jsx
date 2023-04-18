@@ -21,27 +21,38 @@ export const AuthProvider = ({ children }) => {
 
   const [ authState, dispatch ] = useReducer(authReducer, {}, init);
 
-  // definimos la accion para establecer el login
+  //! login
   const login = ( name = '' ) => {
-
+    // se estable el usuario
     const user = { id: 'ABC', name }
 
-    const action = {
-      type: types.login,
-      payload: user
-    }
+    // establecemos la action
+    const action = { type: types.login, payload: user }
 
     // guardamos al user en el localstorage
     localStorage.setItem('user', JSON.stringify( user ));
     
-    // dispara una accion que se definio previamente
+    // dispara una accion login 
+    dispatch(action);
+  }
+
+  //! logout
+  const logout = () => {
+    // limpiamos el localstorage
+    localStorage.removeItem('user');
+
+    // establecemos la action
+    const action = { type: types.logout}
+
+    // dispara una accion logout
     dispatch(action);
   }
 
   return (
     <AuthContext.Provider value={{ 
       ...authState,
-      login: login
+      login: login,
+      logout: logout
     }}>
       { children }
     </AuthContext.Provider>
