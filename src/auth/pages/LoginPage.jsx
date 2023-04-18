@@ -10,12 +10,15 @@ export const LoginPage = () => {
 
   const onLogin = () => {
     // console.log(user)
+    
+    // verificamos si existe un lastaPath si no solo obtenemos el la ruta principal ("/")
+    const lastPath = localStorage.getItem('lastPath') || '/';
 
     // hacemos el dispach de la cacion login y le pasamoes el name
     login('Raul Valdez');
 
 
-    navigate('/', {
+    navigate(lastPath, {
       replace: true
     })  
   }
